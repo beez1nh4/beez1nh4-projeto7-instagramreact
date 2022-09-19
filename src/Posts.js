@@ -6,48 +6,44 @@ import barked from "./img/barked.svg"
 import respondeai from "./img/respondeai.svg"
 import adorable from "./img/adorable_animals.svg"
 
-let notSaved = true;
-let notLiked = true;
-
-
 function Post(props){
   
-  const savePadrao = "bookmark-outline"
-  const likePadrao = "heart-outline"
+  const savePadrao = "display-initial"
+  const savePadrao1 = "display-none"
+  const likePadrao = "display-initial"
+  const likePadrao1 = "display-none"
   const [save, setSave] = React.useState(savePadrao)
+  const [save1, setSave1] = React.useState(savePadrao1)
   const [like, setLike] = React.useState(likePadrao)
-  const [likeColor, setLikeColor] = React.useState("")
+  const [like1, setLike1] = React.useState(likePadrao1)
   const [likesNumber, setLikesNumber] = React.useState(props.likes)
   
   function changeSave(){
-    setSave(notSaved ? "bookmark" : "bookmark-outline")
-    if (notSaved){
-      notSaved = false;
-    } else{
-      notSaved = true;
+    if (save === "display-initial"){
+      setSave("display-none");
+      setSave1("display-initial");
+    } else {
+      setSave1("display-none");
+      setSave("display-initial");
     }
+    
   }
+  
+
   function changeLike(){
-    if (notLiked){
-      setLike("heart")
-      changeColor()
+    if (like === "display-initial"){
+      setLike("display-none");
+      setLike1("display-initial like");
       setLikesNumber(likesNumber+1)
-    }else{
-      setLike("heart-outline")
-      changeColor()
+    } if (like === "display-none") {
+      setLike1("display-none like");
+      setLike("display-initial");
       setLikesNumber(likesNumber-1)
     }
     
   }
-  function changeColor(){
-    if (notLiked){
-      setLikeColor("like")
-      notLiked = false;
-    } else{
-      setLikeColor("iconcolor")
-      notLiked = true;
-    }   
-  }
+  
+
   return (
     <div class="post">
               <div class="topo">
@@ -67,12 +63,14 @@ function Post(props){
               <div class="fundo">
                 <div class="acoes">
                   <div>
-                    <ion-icon onClick={changeLike} name={like} class={likeColor} ></ion-icon>
+                    <ion-icon onClick={changeLike} name="heart-outline" class={like} ></ion-icon>
+                    <ion-icon onClick={changeLike} name="heart" class={like1} ></ion-icon>
                     <ion-icon name="chatbubble-outline"></ion-icon>
                     <ion-icon name="paper-plane-outline"></ion-icon> 
                   </div>
                   <div>
-                     <ion-icon name={save} onClick={changeSave}></ion-icon> 
+                     <ion-icon name="bookmark-outline" onClick={changeSave} class={save}></ion-icon> 
+                     <ion-icon name="bookmark" onClick={changeSave} class={save1}></ion-icon> 
                   </div>
                 </div>
   

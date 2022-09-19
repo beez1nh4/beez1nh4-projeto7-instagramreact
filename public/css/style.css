@@ -400,9 +400,13 @@ ion-icon {
   margin-left: 5px;
 }
 
+
+.display-initial{
+  display: md hydrated;
+}
+.display-none{
+  display: none;
+}
 .like{
   color: #ed4956;
-}
-.iconcolor{
-  color: #262626;
 }
